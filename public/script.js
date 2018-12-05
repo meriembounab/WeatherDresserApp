@@ -48,3 +48,12 @@ function getWeather(){
     // Send request
     request.send();
     }
+function showHot(){
+  document.getElementById("pick2").innerHTML='Hot';
+}
+function showCold(){
+  document.getElementById("pick2").innerHTML='Cold';
+}
+function showJr(){
+  document.getElementById("pick2").innerHTML='Just Right';
+}

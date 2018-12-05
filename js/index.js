@@ -10,11 +10,11 @@ var server = http.createServer(function(request, response) {
 app.use("/", (req, res) => {
     res.sendFile(__dirname + "/index.html");
    });
-   app.use("/getDressed.html", (req, res) => {
-    res.sendFile("/getDressed.html");
+   app.use("/index.html", (req, res) => {
+    res.sendFile("/index.html");
    });
 
-
+   
 var port = process.env.PORT || 1337;
 
 server.listen(port);
