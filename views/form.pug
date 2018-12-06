@@ -9,15 +9,6 @@ block content
         li= error.msg
 
   form(action="." method="POST" class="form-registration")
-    label(for="name") Name:
-    input(
-      type="text"
-      id="name"
-      name="name"
-      class="form-control"
-      value=data.name
-    )
-
     label(for="email") Email:
     input(
       type="email"
@@ -25,6 +16,15 @@ block content
       name="email"
       class="form-control"
       value=data.email
+    )
+
+    label(for="password") Password:
+    input(
+      type="password"
+      id="password"
+      name="password"
+      class="form-control"
+      value=data.password
     )
 
     input(

@@ -1,13 +1,17 @@
 const mongoose = require('mongoose');
 
 const registrationSchema = new mongoose.Schema({
-  name: {
+  /*name: {
     type: String,
     trim: true,
-  },
+  },*/
   email: {
     type: String,
     trim: true,
+  },
+  password: {
+      type: String,
+      trim: true,
   },
 });
 

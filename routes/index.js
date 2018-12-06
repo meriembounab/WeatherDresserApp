@@ -27,10 +27,10 @@ router.get('/', (req, res) => {
   });
   router.post('/',  
   [
-    body('name')
+    body('email')
       .isLength({ min: 1 })
       .withMessage('Please enter a name'),
-    body('email')
+    body('password')
       .isLength({ min: 1 })
       .withMessage('Please enter an email'),
   ],
