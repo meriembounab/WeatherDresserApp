@@ -12,10 +12,6 @@ const registrationSchema = new mongoose.Schema({
   pass: {
       type: String,
       trim: true,
-  },
-  log:{
-      type: String,
-      trim: true
   }
 });
 
