@@ -23,20 +23,21 @@ router.get('/', (req, res) => {
     res.sendFile(__dirname + "/index.html");
   });
   router.get('/log.html', (req, res) => {
-    res.sendFile(__dirname + "/log.html");
+    //res.sendFile(__dirname + "/log.html");
+    res.render('logform', { title: 'Log form' });
   });
   router.post('/',  
   [
     body('email')
       .isLength({ min: 1 })
-      .withMessage('Please enter a name'),
-    body('password')
-      .isLength({ min: 1 })
       .withMessage('Please enter an email'),
+    body('pass')
+      .isLength({ min: 1 })
+      .withMessage('Please enter a password'),
   ],
   (req, res) => {
     const errors = validationResult(req);
-
+    
     if (errors.isEmpty()) {
         const registration = new Registration(req.body);
         registration.save()

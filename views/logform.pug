@@ -1,6 +1,6 @@
-extends layout
+extends loglayout
 
-block content
+block logcontent
   -data = data || {}
 
   if errors
@@ -8,23 +8,23 @@ block content
       for error in errors
         li= error.msg
 
-  form(action="." method="POST" class="form-registration")
-    label(for="email") Email:
-    input(
-      type="email"
-      id="email"
-      name="email"
-      class="form-control"
-      value=data.email
-    )
-
-    label(for="pass") Password:
+  form(action="." method="POST" class="form-log")
+    label(for="outfit") I wore:
     input(
       type="text"
-      id="pass"
-      name="pass"
+      id="outfit"
+      name="outfit"
       class="form-control"
-      value=data.pass
+      value=data.outfit
+    )
+
+    label(for="temp") I felt:
+    input(
+      type="text"
+      id="temp"
+      name="temp"
+      class="form-control"
+      value=data.temp
     )
 
     input(

@@ -5,11 +5,11 @@ block content
   if registrations.length
     table.listing-table.table-dark.table-striped
       tr
-        th Name
         th Email
+        th Password
       each registration in registrations
         tr
-          td= registration.name
           td= registration.email
+          td= registration.password
   else
     p No registrations yet :(
