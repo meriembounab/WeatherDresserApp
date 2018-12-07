@@ -19,8 +19,12 @@ router.get('/', (req, res) => {
       })
       .catch(() => { res.send('Sorry! Something went wrong.'); });
   });
-  router.get('/getDressed.html', (req, res) => {
-    res.sendFile(__dirname + "/getDressed.html");
+  router.get('/getDressed', (req, res) => {
+    Log.find()
+    .then((logs) => {
+      res.render('getd', { title: 'Listing registrations', logs });
+    })
+    .catch(() => { res.send('Sorry! Something went wrong.'); });
   });
   router.get('/index.html', (req, res) => {
     res.sendFile(__dirname + "/index.html");

@@ -1,0 +1,15 @@
+extends getdlayout
+
+block content
+
+  if logs.length
+    table.listing-table.table-dark.table-striped
+      tr
+        th Outfit
+        th Felt
+      each logt in logs
+        tr
+          td= logt.outfit
+          td= logt.temp
+  else
+    p No logs yet :(
