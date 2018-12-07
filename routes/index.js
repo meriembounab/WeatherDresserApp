@@ -80,13 +80,15 @@ router.get('/', (req, res) => {
         const registration = new Registration(req.body);
         console.log(req.body.email);
         console.log(req.body.pass);
-        Registration.findOne({ "email" :req.body.email }, function(err, doc) {
+
+
+        
+        Registration.findOne({ $and:[{"email" :req.body.email },{"pass": req.body.pass}]}, function(err, doc) {
           if (err){
               // error
               //throw err;
           } else if (doc) {
-              // film exists
-              console.log("Film is "+doc);
+              //console.log("Film is "+doc);
               //registration.save()
        // console.log('myreg'+myreg);
         username = req.body.email;
