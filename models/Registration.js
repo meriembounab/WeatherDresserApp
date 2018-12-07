@@ -14,5 +14,15 @@ const registrationSchema = new mongoose.Schema({
       trim: true,
   }
 });
-
+/*const logSchema = new mongoose.Schema({
+  outfit: {
+    type: String,
+    trim: true,
+  },
+  feel: {
+      type: String,
+      trim: true,
+  }
+});
+module.exports = mongoose.model('Log', logSchema);*/
 module.exports = mongoose.model('Registration', registrationSchema);

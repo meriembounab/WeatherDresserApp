@@ -53,18 +53,7 @@ html(lang='en')
 			document.getElementById("root").innerHTML=weather.main.temp+' degrees';
 			var sVal = weather.main.temp;
 			var iNum = parseFloat(sVal);
-			/*const container = document.createElement('div');
-			container.setAttribute('class', 'container');
-			app.appendChild(container);
-			const card = document.createElement('div');
-			card.setAttribute('class', 'card');
-			const h1 = document.createElement('h1');
-			h1.textContent = `${weather.main.temp} degrees`;
-			card.appendChild(h1);*/
-			//data.forEach(movie => {
-			// Log each movie's title
-			//console.log(this.response);
-			//});
+			
 			}
 			// Send request
 			request.send();
