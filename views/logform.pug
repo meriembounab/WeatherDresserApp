@@ -8,7 +8,7 @@ block logcontent
       for error in errors
         li= error.msg
 
-  form(action="." method="POST")
+  form(action="logform" method="POST")
     label(for="name") Name:
     input(
       type="text"

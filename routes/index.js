@@ -27,7 +27,7 @@ router.get('/', (req, res) => {
   //   //res.sendFile(__dirname + "/log.html");
   //   res.render('logform', { title: 'Log form' });
   // });
-  /*router.post('/',  
+  router.post('/',  
   [
     body('email')
       .isLength({ min: 1 })
@@ -51,11 +51,11 @@ router.get('/', (req, res) => {
         data: req.body,
       });
     }
-  });*/
+  });
   router.get('/log.html', (req, res) => {
     res.render('logform', { title: 'Log form' });
   });
-  router.post('/',
+  router.post('/logform',
   [
     body('name')
       .isLength({ min: 1 })
