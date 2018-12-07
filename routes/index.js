@@ -78,26 +78,30 @@ router.get('/', (req, res) => {
     const errors = validationResult(req);
     if (errors.isEmpty()) {
         const registration = new Registration(req.body);
-        var myreg = Registration.findOne(
-          {
-            $and: [
-                   { email : body('email')},
-                   { pass : body('pass') }
-                 ]
+        console.log(req.body.email);
+        console.log(req.body.pass);
+        Registration.findOne({ "email" :req.body.email }, function(err, doc) {
+          if (err){
+              // error
+              //throw err;
+          } else if (doc) {
+              // film exists
+              console.log("Film is "+doc);
+              //registration.save()
+       // console.log('myreg'+myreg);
+        username = req.body.email;
+        res.sendFile(__dirname + "/index.html"); 
+          } else {
+              // film doesn't exist
+              res.render('signinform', {
+                title: 'Sign in form',
+                errors: errors.array(),
+                data: req.body,
+              });
+              body('pass')
+               .withMessage('Invalid Username or password')
           }
-       )
-       if(myreg){
-        //registration.save()
-          username = req.body.email;
-          res.sendFile(__dirname + "/index.html"); 
-        }
-        else{
-          res.render('siform', {
-            title: 'Sign in form',
-            errors: errors.array(),
-            data: req.body,
-          });
-        }
+      });
       } else {
       res.render('form', {
         title: 'Registration form',
