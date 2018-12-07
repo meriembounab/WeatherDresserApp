@@ -8,6 +8,7 @@ const Registration = mongoose.model('Registration');
 const Log = mongoose.model('Log');
 
 var username="";
+var outsidetemp;
 
 router.get('/', (req, res) => {
     res.render('form', { title: 'Registration form' });
@@ -130,8 +131,8 @@ router.get('/', (req, res) => {
     if (errors.isEmpty()) {
       const log = new Log(req.body);
       log.email = username;
+     // console.log();
       log.save()
-
         .then(() => {  res.render('logform', { title: 'Log form' }); })
         .catch(() => { res.send('Sorry! Something went wrong.'); });
     } else {
@@ -143,5 +144,5 @@ router.get('/', (req, res) => {
     }
   }
 );
-//module.exports = username;
+
 module.exports = router;

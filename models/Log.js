@@ -13,6 +13,10 @@ const logSchema = new mongoose.Schema({
     type: String,
     trim: false,
   },
+  otemp:{
+    type: Number,
+    trim: true,
+  }
 });
 
 module.exports = mongoose.model('Log', logSchema);

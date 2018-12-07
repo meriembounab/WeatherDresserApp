@@ -5,10 +5,12 @@ block content
   if logs.length
     table.listing-table.table-dark.table-striped 
       tr
+        th Temp
         th Outfit
         th Felt
       each logt in logs
         tr
+          td= logt.otemp
           td= logt.outfit
           td= logt.temp
   else
