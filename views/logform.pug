@@ -9,20 +9,20 @@ block logcontent
         li= error.msg
 
   form(action="logform" method="POST")
-    label(for="name") Name:
+    label(for="outfit") Outfit:
     input(
       type="text"
-      id="name"
-      name="name"
-      value=data.name
+      id="outfit"
+      name="outfit"
+      value=data.outfit
     )
 
-    label(for="email") Email:
+    label(for="temp") I felt:
     input(
-      type="email"
-      id="email"
-      name="email"
-      value=data.email
+      type="text"
+      id="temp"
+      name="temp"
+      value=data.temp
     )
 
     input(type="submit" value="Submit")

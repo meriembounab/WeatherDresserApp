@@ -1,4 +1,4 @@
-extends layout
+extends silayout
 
 block content
   -data = data || {}
@@ -8,7 +8,7 @@ block content
       for error in errors
         li= error.msg
 
-  form(action="." method="POST" class="form-registration")
+  form(action="signin" method="POST" class="form-registration")
     label(for="email") Email:
     input(
       type="email"
@@ -27,17 +27,8 @@ block content
       value=data.pass
     )
 
-    label(for="cpass") Confirm Password:
-    input(
-      type="text"
-      id="pass"
-      name="pass"
-      class="form-control"
-      value=data.pass
-    )
-
     input(
       type="submit"
-      value="Sign Up"
+      value="Sign In"
       class="btn btn-lg btn-primary btn-block"
     )

@@ -23,6 +23,9 @@ router.get('/', (req, res) => {
   router.get('/index.html', (req, res) => {
     res.sendFile(__dirname + "/index.html");
   });
+  router.get('/signin.html', (req, res) => {
+    res.render('signinform', { title: 'Sign in form' });
+  });
   // router.get('/log.html', (req, res) => {
   //   //res.sendFile(__dirname + "/log.html");
   //   res.render('logform', { title: 'Log form' });
@@ -52,17 +55,61 @@ router.get('/', (req, res) => {
       });
     }
   });
+
+  router.post('/signin',  
+  [
+    body('email')
+      .isLength({ min: 1 })
+      .withMessage('Please enter an email'),
+    body('pass')
+      .isLength({ min: 1 })
+      .withMessage('Please enter a password'),
+    
+  ],
+  (req, res) => {
+    const errors = validationResult(req);
+    
+    if (errors.isEmpty()) {
+        const registration = new Registration(req.body);
+        var myreg = Registration.findOne(
+          {
+            $and: [
+                   { email : body('email')},
+                   { birth: body('pass') }
+                 ]
+          }
+       )
+       if(myreg){
+        //registration.save()
+          res.sendFile(__dirname + "/index.html"); 
+        }
+        else{
+          res.render('form', {
+            title: 'Registration form',
+            errors: errors.array(),
+            data: req.body,
+          });
+        }
+      } else {
+      res.render('form', {
+        title: 'Registration form',
+        errors: errors.array(),
+        data: req.body,
+      });
+    }
+  });
+
   router.get('/log.html', (req, res) => {
     res.render('logform', { title: 'Log form' });
   });
   router.post('/logform',
   [
-    body('name')
+    body('outfit')
       .isLength({ min: 1 })
-      .withMessage('Please enter a name'),
-    body('email')
+      .withMessage('Please enter an outfit'),
+    body('temp')
       .isLength({ min: 1 })
-      .withMessage('Please enter an email'),
+      .withMessage('Please enter how you felt'),
   ],
   (req, res) => {
     const errors = validationResult(req);
