@@ -1,13 +1,17 @@
 const mongoose = require('mongoose');
 
 const logSchema = new mongoose.Schema({
-  outfit: {
+  email: {
     type: String,
     trim: true,
   },
+  outfit: {
+    type: String,
+    trim: false,
+  },
   temp: {
     type: String,
-    trim: true,
+    trim: false,
   },
 });
 

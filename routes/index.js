@@ -7,6 +7,8 @@ const router = express.Router();
 const Registration = mongoose.model('Registration');
 const Log = mongoose.model('Log');
 
+var username="";
+
 router.get('/', (req, res) => {
     res.render('form', { title: 'Registration form' });
   });
@@ -44,6 +46,7 @@ router.get('/', (req, res) => {
     
     if (errors.isEmpty()) {
         const registration = new Registration(req.body);
+        username = req.body.email;
         registration.save()
           .then(() => { res.sendFile(__dirname + "/index.html"); })
           .catch(() => { res.send('Sorry! Something went wrong.'); });
@@ -68,24 +71,24 @@ router.get('/', (req, res) => {
   ],
   (req, res) => {
     const errors = validationResult(req);
-    
     if (errors.isEmpty()) {
         const registration = new Registration(req.body);
         var myreg = Registration.findOne(
           {
             $and: [
                    { email : body('email')},
-                   { birth: body('pass') }
+                   { birth : body('pass') }
                  ]
           }
        )
        if(myreg){
         //registration.save()
+          username = req.body.email;
           res.sendFile(__dirname + "/index.html"); 
         }
         else{
-          res.render('form', {
-            title: 'Registration form',
+          res.render('siform', {
+            title: 'Sign in form',
             errors: errors.array(),
             data: req.body,
           });
@@ -115,7 +118,9 @@ router.get('/', (req, res) => {
     const errors = validationResult(req);
     if (errors.isEmpty()) {
       const log = new Log(req.body);
+      log.email = username;
       log.save()
+
         .then(() => {  res.render('logform', { title: 'Log form' }); })
         .catch(() => { res.send('Sorry! Something went wrong.'); });
     } else {
@@ -127,4 +132,5 @@ router.get('/', (req, res) => {
     }
   }
 );
+//module.exports = username;
 module.exports = router;
