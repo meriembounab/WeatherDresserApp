@@ -25,7 +25,7 @@ router.get('/', (req, res) => {
   router.get('/getDressed', (req, res) => {
     Log.find({email: username})
     .then((logs) => {
-      res.render('getd', { title: 'Listing registrations', logs });
+      res.render('getd', { title: 'Listing logs', logs });
     })
     .catch(() => { res.send('Sorry! Something went wrong.'); });
   });
@@ -51,17 +51,28 @@ router.get('/', (req, res) => {
     const errors = validationResult(req);
     
     if (errors.isEmpty()) {
-        const registration = new Registration(req.body);
-        username = req.body.email;
-        registration.save()
-          .then(() => { res.sendFile(__dirname + "/index.html"); })
-          .catch(() => { res.send('Sorry! Something went wrong.'); });
-      } else {
+      Registration.findOne({"email" :req.body.email }, function(err, doc) {
+        if (err){
+            // error
+            //throw err;
+        } else if (doc) {
       res.render('form', {
         title: 'Registration form',
         errors: errors.array(),
         data: req.body,
       });
+        } else {
+            //doesn't exist
+            const registration = new Registration(req.body);
+        username = req.body.email;
+        registration.save()
+          .then(() => { res.sendFile(__dirname + "/index.html"); })
+          .catch(() => { res.send('Sorry! Something went wrong.'); });
+        }
+    });
+        
+      } else {
+      
     }
   });
 
