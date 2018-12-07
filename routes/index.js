@@ -8,7 +8,6 @@ const Registration = mongoose.model('Registration');
 const Log = mongoose.model('Log');
 
 var username="";
-var outsidetemp;
 
 router.get('/', (req, res) => {
     res.render('form', { title: 'Registration form' });
@@ -69,11 +68,8 @@ router.get('/', (req, res) => {
           .then(() => { res.sendFile(__dirname + "/index.html"); })
           .catch(() => { res.send('Sorry! Something went wrong.'); });
         }
-    });
-        
-      } else {
-      
-    }
+    }); 
+      } 
   });
 
   router.post('/signin',  
@@ -142,6 +138,10 @@ router.get('/', (req, res) => {
     if (errors.isEmpty()) {
       const log = new Log(req.body);
       log.email = username;
+      //ADD TEMP HERE
+      console.log(myModule.outsidetemp);
+      log.otemp = myModule.outsidetemp;
+
      // console.log();
       log.save()
         .then(() => {  res.render('logform', { title: 'Log form' }); })
