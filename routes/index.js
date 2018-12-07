@@ -12,6 +12,7 @@ var username="";
 router.get('/', (req, res) => {
     res.render('form', { title: 'Registration form' });
   });
+
   router.get('/registrations', (req, res) => {
     Registration.find()
       .then((registrations) => {
@@ -19,23 +20,23 @@ router.get('/', (req, res) => {
       })
       .catch(() => { res.send('Sorry! Something went wrong.'); });
   });
+
   router.get('/getDressed', (req, res) => {
-    Log.find()
+    Log.find({email: username})
     .then((logs) => {
       res.render('getd', { title: 'Listing registrations', logs });
     })
     .catch(() => { res.send('Sorry! Something went wrong.'); });
   });
+
   router.get('/index.html', (req, res) => {
     res.sendFile(__dirname + "/index.html");
   });
+
   router.get('/signin.html', (req, res) => {
     res.render('signinform', { title: 'Sign in form' });
   });
-  // router.get('/log.html', (req, res) => {
-  //   //res.sendFile(__dirname + "/log.html");
-  //   res.render('logform', { title: 'Log form' });
-  // });
+ 
   router.post('/',  
   [
     body('email')
@@ -81,7 +82,7 @@ router.get('/', (req, res) => {
           {
             $and: [
                    { email : body('email')},
-                   { birth : body('pass') }
+                   { pass : body('pass') }
                  ]
           }
        )
